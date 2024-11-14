@@ -50,8 +50,8 @@ export default function Home() {
 
         <h2 className="mt-3">Öne Çıkan Ürünler</h2>
 
-        <div className="row mt-3">
-          <div className="col-12 col-sm-6 col-md-4">
+        <div className="row mt-3 ">
+          <div className="col-12 col-sm-6 col-md-4 mb-3">
             <div className="card">
               <img src="urun1.jpg" className="card-img" alt="Ürün 1"/>
               <div className="card-body">
@@ -61,7 +61,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="col-12 col-sm-6 col-md-4">
+          <div className="col-12 col-sm-6 col-md-4 mb-3">
             <div className="card">
               <img src="urun2.jpg" className="card-img" alt="Ürün 2"/>
               <div className="card-body">
@@ -71,7 +71,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="col-12 col-sm-6 col-md-4">
+          <div className="col-12 col-sm-6 col-md-4 mb-3">
             <div className="card">
               <img src="urun3.jpg" className="card-img" alt="Ürün 3"/>
               <div className="card-body">
@@ -81,7 +81,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="col-12 col-sm-6 col-md-4">
+          <div className="col-12 col-sm-6 col-md-4 mb-3">
             <div className="card">
               <img src="urun4.jpg" className="card-img" alt="Ürün 1"/>
               <div className="card-body">
@@ -91,7 +91,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="col-12 col-sm-6 col-md-4">
+          <div className="col-12 col-sm-6 col-md-4 mb-3">
             <div className="card">
               <img src="urun5.jpg" className="card-img" alt="Ürün 2"/>
               <div className="card-body">
@@ -101,7 +101,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="col-12 col-sm-6 col-md-4">
+          <div className="col-12 col-sm-6 col-md-4 mb-3">
             <div className="card">
               <img src="urun6.jpg" className="card-img" alt="Ürün 3"/>
               <div className="card-body">
