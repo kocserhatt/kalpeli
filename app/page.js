@@ -1,95 +1,86 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+"use client";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { useEffect } from 'react';
+import './styles/styles.css';
 
 export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>app/page.js</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  useEffect(() => {
+    import('bootstrap/dist/js/bootstrap.bundle.min.js')
+      .then((bootstrap) => {
+        const carouselElement = document.querySelector('#carouselExampleIndicators');
+        const carousel = new bootstrap.Carousel(carouselElement, {
+          interval: 5000,
+          ride: 'carousel'
+        });
+      })
+      .catch(err => console.error('Bootstrap JS yüklenirken hata oluştu:', err));
+  }, []);
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
+  return (
+    <>
+      <div className="container mt-2">
+        <div id="carouselExampleIndicators" className="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
+          <div className="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+          </div>
+          <div className="carousel-inner">
+            <div className="carousel-item active">
+              <img src="/format_webp.jpg" className="d-block w-100" alt="..."/>
+            </div>
+            <div className="carousel-item">
+              <img src="format_webp (1).jpg" className="d-block w-100" alt="..."/>
+            </div>
+            <div className="carousel-item">
+              <img src="format_webp (2).jpg" className="d-block w-100" alt="..."/>
+            </div>
+          </div>
+          <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+            <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span className="visually-hidden">Previous</span>
+          </button>
+          <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+            <span className="carousel-control-next-icon" aria-hidden="true"></span>
+            <span className="visually-hidden">Next</span>
+          </button>
         </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+
+        <h2 className="mt-3">Öne Çıkan Ürünler</h2>
+
+        <div className="row mt-3">
+          <div className="col-12 col-sm-6 col-md-4">
+            <div className="card">
+              <img src="urun1.jpg" className="card-img" alt="Ürün 1"/>
+              <div className="card-body">
+                <h5 className="card-title">Philips EP5547/90 5500 Serisi Tam Otomatik Espresso Makinesi</h5>
+                <p className="card-text">21.999,00 TL</p>
+                <a href="#" className="btn btn-primary">Satın Al</a>
+              </div>
+            </div>
+          </div>
+          <div className="col-12 col-sm-6 col-md-4">
+            <div className="card">
+              <img src="urun2.jpg" className="card-img" alt="Ürün 2"/>
+              <div className="card-body">
+                <h5 className="card-title">Klassegear Pro 90X40 cm Gaming Oyuncu MousePad </h5>
+                <p className="card-text">404,90 TL</p>
+                <a href="#" className="btn btn-primary">Satın Al</a>
+              </div>
+            </div>
+          </div>
+          <div className="col-12 col-sm-6 col-md-4">
+            <div className="card">
+              <img src="urun3.jpg" className="card-img" alt="Ürün 3"/>
+              <div className="card-body">
+                <h5 className="card-title">Spigen 45W GaN USB-C 2 Port Mini Adaptör</h5>
+                <p className="card-text">499,00 TL</p>
+                <a href="#" className="btn btn-primary">Satın Al</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
   );
 }
