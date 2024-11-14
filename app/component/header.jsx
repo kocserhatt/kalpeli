@@ -1,7 +1,6 @@
 "use client";
-import { useState } from 'react';
+import { useState, useEffect} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import Login from './Login';
 import Register from './Register';
 
@@ -10,6 +9,20 @@ export default function Header() {
 
   const handleShowModal = () => setShowModal(true);
   const handleCloseModal = () => setShowModal(false);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      import('bootstrap/dist/js/bootstrap.bundle.min.js')
+        .then((bootstrap) => {
+          const carouselElement = document.querySelector('#carouselExampleIndicators');
+          const carousel = new bootstrap.Carousel(carouselElement, {
+            interval: 5000,
+            ride: 'carousel'
+          });
+        })
+        .catch(err => console.error('Bootstrap JS yüklenirken hata oluştu:', err));
+    }
+  }, []);
 
   return (
     <>

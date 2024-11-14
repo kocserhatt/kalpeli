@@ -5,15 +5,17 @@ import './styles/styles.css';
 
 export default function Home() {
   useEffect(() => {
-    import('bootstrap/dist/js/bootstrap.bundle.min.js')
-      .then((bootstrap) => {
-        const carouselElement = document.querySelector('#carouselExampleIndicators');
-        const carousel = new bootstrap.Carousel(carouselElement, {
-          interval: 5000,
-          ride: 'carousel'
-        });
-      })
-      .catch(err => console.error('Bootstrap JS yüklenirken hata oluştu:', err));
+    if (typeof window !== 'undefined') {
+      import('bootstrap/dist/js/bootstrap.bundle.min.js')
+        .then((bootstrap) => {
+          const carouselElement = document.querySelector('#carouselExampleIndicators');
+          const carousel = new bootstrap.Carousel(carouselElement, {
+            interval: 5000,
+            ride: 'carousel'
+          });
+        })
+        .catch(err => console.error('Bootstrap JS yüklenirken hata oluştu:', err));
+    }
   }, []);
 
   return (
