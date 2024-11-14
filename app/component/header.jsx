@@ -1,8 +1,8 @@
 "use client";
 import { useState, useEffect} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Login from './Login';
-import Register from './Register';
+import Login from '../component/login';
+import Register from '../component/register';
 
 export default function Header() {
   const [showModal, setShowModal] = useState(false);
