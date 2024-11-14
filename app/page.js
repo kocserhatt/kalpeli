@@ -81,6 +81,36 @@ export default function Home() {
               </div>
             </div>
           </div>
+          <div className="col-12 col-sm-6 col-md-4">
+            <div className="card">
+              <img src="urun4.jpg" className="card-img" alt="Ürün 1"/>
+              <div className="card-body">
+                <h5 className="card-title">Xiaomi Redmi Watch 5 Active Akıllı Saat</h5>
+                <p className="card-text">1.300,00 TL</p>
+                <a href="#" className="btn btn-primary">Satın Al</a>
+              </div>
+            </div>
+          </div>
+          <div className="col-12 col-sm-6 col-md-4">
+            <div className="card">
+              <img src="urun5.jpg" className="card-img" alt="Ürün 2"/>
+              <div className="card-body">
+                <h5 className="card-title">MSI THIN 15 Intel Core i5 12450H 16GB 512GB SSD RTX305015.6" FHD 144Hz</h5>
+                <p className="card-text">26.999,00 TL</p>
+                <a href="#" className="btn btn-primary">Satın Al</a>
+              </div>
+            </div>
+          </div>
+          <div className="col-12 col-sm-6 col-md-4">
+            <div className="card">
+              <img src="urun6.jpg" className="card-img" alt="Ürün 3"/>
+              <div className="card-body">
+                <h5 className="card-title">English Home Blare 6'lı Organizer Set Pudra</h5>
+                <p className="card-text">469,99 TL</p>
+                <a href="#" className="btn btn-primary">Satın Al</a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </>
