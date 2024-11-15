@@ -102,7 +102,7 @@ export default function Header() {
                 {user ? (
                   <div className="d-flex align-items-center gap-2 mt">
                     <span className="navbar-text">{user.email}</span>
-                    <button className="btn btn-danger" onClick={handleLogout}>Çıkış Yap</button>
+                    <button className="btn btn-danger" onClick={handleLogout}>Çıkış</button>
                   </div>
                 ) : (
                   <button className="btn btn-success d-none d-lg-block" onClick={() => { handleShowModal(); setIsLogin(true); }}>Kayıt/Giriş</button>
