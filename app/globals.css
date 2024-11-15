@@ -1,0 +1,7 @@
+  /* Modal arka planını grileştirme */
+  .modal-open .modal-backdrop {
+    background-color: rgba(0, 0, 0, 0.5) !important;
+  }
+  .clr{
+    background-color: white !important;
+  }
