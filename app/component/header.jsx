@@ -1,8 +1,8 @@
 "use client";
 import { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Login from '../component/Login';
-import Register from '../component/Register';
+import Login from '../component/login';
+import Register from '../component/register';
 import supabase from '../supabaseClient';
 import '../styles/styles.css';
 
