@@ -5,11 +5,14 @@ import Login from '../component/login';
 import Register from '../component/register';
 import supabase from '../supabaseClient';
 import '../styles/styles.css';
+import { useRouter } from 'next/navigation';
 
 export default function Header() {
   const [showModal, setShowModal] = useState(false);
   const [user, setUser] = useState(null);
+  const [profile, setProfile] = useState(null); // Kullanıcı profil bilgilerini tutmak için state
   const [isLogin, setIsLogin] = useState(true);
+  const router = useRouter();
 
   const handleShowModal = () => {
     setShowModal(true);
@@ -32,6 +35,7 @@ export default function Header() {
       console.error('Error logging out:', error.message);
     } else {
       setUser(null);
+      setProfile(null);
       window.location.reload();
     }
   };
@@ -40,26 +44,54 @@ export default function Header() {
     if (typeof window !== 'undefined') {
       import('bootstrap/dist/js/bootstrap.bundle.min.js')
         .then(() => {
-          console.log('Bootstrap JS loaded');
+          console.log('Bootstrap JS yüklendi');
         })
-        .catch(err => console.error('Error loading Bootstrap JS:', err));
+        .catch(err => console.error('Bootstrap JS yüklenirken hata oluştu:', err));
     }
 
     const getSession = async () => {
       const { data: { session } } = await supabase.auth.getSession();
-      setUser(session?.user ?? null);
+      if (session) {
+        setUser(session.user);
+        const { data: profileData, error } = await supabase
+          .from('profiles')
+          .select('*')
+          .eq('id', session.user.id)
+          .single();
+        if (error) {
+          console.error('Error fetching profile:', error.message);
+        } else {
+          setProfile(profileData);
+        }
+      }
     };
 
     getSession();
 
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      setUser(session?.user ?? null);
+      if (session) {
+        setUser(session.user);
+        const fetchProfile = async () => {
+          const { data: profileData, error } = await supabase
+            .from('profiles')
+            .select('*')
+            .eq('id', session.user.id)
+            .single();
+          if (error) {
+            console.error('Error fetching profile:', error.message);
+          } else {
+            setProfile(profileData);
+          }
+        };
+        fetchProfile();
+      } else {
+        setUser(null);
+        setProfile(null);
+      }
     });
 
     return () => {
       subscription?.unsubscribe();
-      const backdrop = document.querySelector('.modal-backdrop');
-      if (backdrop) backdrop.remove();
     };
   }, []);
 
@@ -68,16 +100,10 @@ export default function Header() {
       <div className='container'>
         <nav className="navbar navbar-expand-lg navbar-light">
           <div className="container-fluid">
-            <a className="navbar-brand" href="#">KalpEli</a>
-            <div className='d-flex align-items-center gap-3'>
-            <div>
-            {!user && (
-              <button className="btn btn-success d-lg-none" onClick={() => { handleShowModal(); setIsLogin(true); }}>Kayıt/Giriş</button>)}
-            </div>
+            <a className="navbar-brand" href="/">KalpEli</a>
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
               <span className="navbar-toggler-icon"></span>
             </button>
-            </div>
             <div className="collapse navbar-collapse" id="navbarNav">
               <ul className="navbar-nav me-auto">
                 <li className="nav-item">
@@ -101,7 +127,8 @@ export default function Header() {
                 </form>
                 {user ? (
                   <div className="d-flex align-items-center gap-2 mt">
-                    <span className="navbar-text">{user.email}</span>
+                    <span className="navbar-text text-dark">Hoşgeldin {profile?.name}</span>
+                    <button className="btn btn-success" onClick={() => router.push('/hesabim')}>Hesabım</button>
                     <button className="btn btn-danger" onClick={handleLogout}>Çıkış</button>
                   </div>
                 ) : (
@@ -141,7 +168,6 @@ export default function Header() {
           </div>
         </div>
       </div>
-
     </>
   );
 }
